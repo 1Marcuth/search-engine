@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"os"
 	"log"
 	"strings"
 	"unicode"
@@ -143,7 +143,7 @@ func (searchEngine SearchEngine) Search(query string) []ItemSearched {
 }
 
 func main() {
-	data, err := ioutil.ReadFile("data.json")
+	data, err := os.ReadFile("data.json")
 
 	if err != nil {
 		log.Fatalf("Erro ao ler o arquivo: %v", err)
@@ -168,7 +168,7 @@ func main() {
 		log.Fatalf("Erro ao codificar para JSON: %v", err)
 	}
 
-	err = ioutil.WriteFile("output.json", jsonData, 0644)
+	err = os.WriteFile("output.json", jsonData, 0644)
 
 	if err != nil {
 		log.Fatalf("Erro ao escrever no arquivo: %v", err)
